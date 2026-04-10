@@ -26,7 +26,9 @@ const fetchHello = async () => {
   message.value = '';
 
   try {
-    const response = await fetch('http://localhost:8080/hello');
+    // Usamos import.meta.env para leer variables de entorno en Vite
+    const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8080';
+    const response = await fetch(`${apiUrl}/hello`);
     if (!response.ok) {
       throw new Error(`Error del servidor: ${response.status}`);
     }
